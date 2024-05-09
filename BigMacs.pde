@@ -1,4 +1,10 @@
 class BigMacs
 {
   
+  
+  
+  public BigMac()
+  {
+    
+  }
 }
