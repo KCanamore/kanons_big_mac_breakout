@@ -1,0 +1,11 @@
+class Paddle 
+{
+  
+ 
+  
+  public Paddle()
+  {
+      
+  }
+  
+}
