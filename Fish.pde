@@ -1,4 +1,10 @@
 class Fish
 {
   
+  
+  
+  public Fish()
+  {
+    
+  }
 }
