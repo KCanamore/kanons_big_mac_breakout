@@ -1,17 +1,22 @@
-class BigMacs
+class BigMac
 {
   
   int level = 1;
   int xPos, yPos;
   PImage burmgur;
   
-  public BigMacs(int x, int y)
+  public BigMac(int x, int y)
   {
     xPos = x;
     yPos = y;
   }
   
   void drawBigMac()
+  {
+   image(burmgur, xPos, yPos); 
+  }
+  
+  void determineBigMac()
   {
     if( level == 1 )
     {
