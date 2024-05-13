@@ -3,7 +3,7 @@ class BigMacs
   
  
   
-  public Bigmac()
+  public BigMacs()
   {
     
   }

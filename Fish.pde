@@ -21,4 +21,6 @@ class Fish
     xPos += xSpd;
     yPos += ySpd;
   }
+  
+  
 }
