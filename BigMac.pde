@@ -16,7 +16,7 @@ class BigMac
    image(burmgur, xPos, yPos); 
   }
   
-  void determineBigMac()
+  void determineBigMac()//FIX IT
   {
     if( level == 1 )
     {
