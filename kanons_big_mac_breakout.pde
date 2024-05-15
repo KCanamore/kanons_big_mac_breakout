@@ -2,14 +2,51 @@ boolean isGameOver = false;
 
 ArrayList<BigMac> bigMacs = new ArrayList<BigMac>();
 
+PImage burmgur1;
+PImage burmgur2;
+PImage burmgur3;
+PImage burmgur4;
+PImage burmgur5;
+PImage burmgur6;
+PImage burmgur7;
+
+PImage fish;
+
+Paddle p = new Paddle();
+Fish f = new Fish();
 void setup()
 {
+  rectMode(CENTER);
+  noCursor();
   fullScreen();
   for(BigMac b: bigMacs)
   {
     b.determineBigMac();
   }
   addRowOfBigMacs(int(random(9)));
+  
+  
+  burmgur1 = loadImage("burmgur.png");
+  burmgur2 = loadImage("burmgur2.png");
+  burmgur3 = loadImage("burmgur3.png");
+  burmgur4 = loadImage("burmgur4.png");
+  burmgur5 = loadImage("burmgur5.png");
+  burmgur6 = loadImage("burmgur6.png");
+  burmgur7 = loadImage("burmgurFinal.png");
+  
+  fish = loadImage("Fish.png");
+  
+  burmgur1.resize(100, 50);
+  burmgur2.resize(100, 50);
+  burmgur3.resize(100, 50);
+  burmgur4.resize(100, 50);
+  burmgur5.resize(100, 50);
+  burmgur6.resize(100, 50);
+  burmgur7.resize(100, 50);
+
+  fish.resize(75, 0);
+
+  f.defineFish();
 
 }
 
@@ -20,6 +57,8 @@ void draw()
   {
     b.drawBigMac();
   }
+  p.drawPaddle();
+  f.drawFish();
   gameOver();
 }
 
@@ -100,5 +139,5 @@ void gameOver()
 
 void mousePressed()
 {
- isGameOver = !isGameOver; 
+  f.ySpd += 5;
 }
