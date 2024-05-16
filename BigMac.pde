@@ -1,7 +1,7 @@
 class BigMac
 {
   
-  int level = 1;
+  int level = int(random(7));
   int xPos, yPos;
   
   public BigMac(int x, int y)
@@ -25,39 +25,33 @@ class BigMac
     
     if( level == 2 )
     {
-      return burmgur1;
+      return burmgur2;
     }
     
     if( level == 3 )
     {
-      return burmgur1;
+      return burmgur3;
     }
     
     if( level == 4 )
     {
-      return burmgur1;
+      return burmgur4;
     }
     
     if( level == 5 )
     {
-      return burmgur1;
+      return burmgur5;
     }
     
     if( level == 6 )
     {
-      return burmgur1;
+      return burmgur6;
     }
     
     if( level == 7 )
     {
-      return burmgur1;
+      return burmgur7;
     }
-    
-    if( level == 8 )
-    {
-      return burmgur1;
-    }
-    
     return burmgur1;
   }
   

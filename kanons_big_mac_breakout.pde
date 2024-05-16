@@ -1,7 +1,12 @@
+import processing.sound.*;
+
 boolean isGameOver = false;
 boolean readyLaunch = true;
 
 ArrayList<BigMac> bigMacs = new ArrayList<BigMac>();
+
+SoundFile [] sfx = new SoundFile[14];
+SoundFile moan;
 
 PImage burmgur1;
 PImage burmgur2;
@@ -20,10 +25,23 @@ void setup()
   rectMode(CENTER);
   noCursor();
   fullScreen();
-  for(BigMac b: bigMacs)
-  {
-    b.determineBigMac(1);
-  }
+  
+  sfx[0] = new SoundFile(this, "munchin1.wav");
+  sfx[1] = new SoundFile(this, "munchin2.wav");
+  sfx[2] = new SoundFile(this, "munchin3.wav");
+  sfx[3] = new SoundFile(this, "munchin4.wav");
+  sfx[4] = new SoundFile(this, "munchin5.wav");
+  sfx[5] = new SoundFile(this, "munchin6.wav");
+  sfx[6] = new SoundFile(this, "munchin7.wav");
+  sfx[7] = new SoundFile(this, "munchin8.wav");
+  sfx[8] = new SoundFile(this, "munchin9.wav");
+  sfx[9] = new SoundFile(this, "munchin10.wav");
+  sfx[10] = new SoundFile(this, "munchin11.wav");
+  sfx[11] = new SoundFile(this, "munchin12.wav");
+  sfx[12] = new SoundFile(this, "munchin13.wav");
+  sfx[13] = new SoundFile(this, "munchin14.wav");
+  moan = new SoundFile(this, "background.wav");
+  
   addRowOfBigMacs(int(random(9)));
   
   
@@ -56,10 +74,11 @@ void draw()
   background(0);
   for(BigMac b: bigMacs)
   {
-    b.drawBigMac(b.determineBigMac(1));
+    b.drawBigMac(b.determineBigMac(b.level));
   }
   p.drawPaddle();
   f.drawFish();
+  destroy();
   gameOver();
 }
 
@@ -126,6 +145,17 @@ void addRowOfBigMacs( int row ) //row is y index
       }
       break;
   }
+}
+
+void destroy()
+{
+ for(int i = 0; i < bigMacs.size(); i++)
+ {
+   if(bigMacs.get(i).level == 0)
+   {
+     bigMacs.remove(i);
+   }
+ }
 }
 
 void gameOver()

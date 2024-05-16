@@ -21,10 +21,12 @@ class Fish
     imageMode(CENTER);
     
     int burmgur = bounce();
-    if( burmgur >0 )
+    if( burmgur > 0 )
     //remove that burmgur   FINISH THIS 
     {
-      
+      sfx[int(random(14))].play();
+      moan.play();
+      bigMacs.get(burmgur).level--;
     }
    
     
