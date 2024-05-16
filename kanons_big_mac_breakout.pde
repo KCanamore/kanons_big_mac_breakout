@@ -1,4 +1,5 @@
 boolean isGameOver = false;
+boolean readyLaunch = true;
 
 ArrayList<BigMac> bigMacs = new ArrayList<BigMac>();
 
@@ -21,7 +22,7 @@ void setup()
   fullScreen();
   for(BigMac b: bigMacs)
   {
-    b.determineBigMac();
+    b.determineBigMac(1);
   }
   addRowOfBigMacs(int(random(9)));
   
@@ -55,7 +56,7 @@ void draw()
   background(0);
   for(BigMac b: bigMacs)
   {
-    b.drawBigMac();
+    b.drawBigMac(b.determineBigMac(1));
   }
   p.drawPaddle();
   f.drawFish();
@@ -139,5 +140,10 @@ void gameOver()
 
 void mousePressed()
 {
-  f.ySpd += 5;
+  if( readyLaunch == true )
+  {
+    f.ySpd += 5;
+    f.xSpd += random(-5, 5);
+    readyLaunch = false;
+  }
 }
