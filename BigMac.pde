@@ -1,7 +1,7 @@
 class BigMac
 {
   
-  int level = int(random(7));
+  int level = 1;
   int xPos, yPos;
   
   public BigMac(int x, int y)

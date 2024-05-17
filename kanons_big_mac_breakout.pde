@@ -7,6 +7,7 @@ ArrayList<BigMac> bigMacs = new ArrayList<BigMac>();
 
 SoundFile [] sfx = new SoundFile[14];
 SoundFile moan;
+SoundFile uranium;
 
 PImage burmgur1;
 PImage burmgur2;
@@ -41,9 +42,25 @@ void setup()
   sfx[12] = new SoundFile(this, "munchin13.wav");
   sfx[13] = new SoundFile(this, "munchin14.wav");
   moan = new SoundFile(this, "background.wav");
+  uranium = new SoundFile(this, "uranium.wav");
   
   addRowOfBigMacs(int(random(9)));
-  
+  addRowOfBigMacs(int(random(9)));
+  addRowOfBigMacs(int(random(9)));
+  addRowOfBigMacs(int(random(9)));
+  addRowOfBigMacs(int(random(9)));
+  addRowOfBigMacs(int(random(9)));
+  addRowOfBigMacs(int(random(9)));
+  addRowOfBigMacs(int(random(9)));
+  addRowOfBigMacs(int(random(9)));
+  addRowOfBigMacs(int(random(9)));
+  addRowOfBigMacs(int(random(9)));
+  addRowOfBigMacs(int(random(9)));
+  addRowOfBigMacs(int(random(9)));
+  addRowOfBigMacs(int(random(9)));
+  addRowOfBigMacs(int(random(9)));
+  addRowOfBigMacs(int(random(9)));
+  addRowOfBigMacs(int(random(9)));
   
   burmgur1 = loadImage("burmgur.png");
   burmgur2 = loadImage("burmgur2.png");
@@ -72,6 +89,13 @@ void setup()
 void draw()
 {
   background(0);
+  
+  if(f.yPos >= height)
+  {
+    uranium.play();
+    isGameOver = true;
+  }
+  
   for(BigMac b: bigMacs)
   {
     b.drawBigMac(b.determineBigMac(b.level));
@@ -79,6 +103,7 @@ void draw()
   p.drawPaddle();
   f.drawFish();
   destroy();
+  consolidateBigMacs();
   gameOver();
 }
 
@@ -165,7 +190,13 @@ void gameOver()
    fill(random(255), random(255), random(255));
    textSize(200);
    text("GAME OVER", width/2-500, height/2);
+   f.xPos = width/2;
+   f.yPos = height/2;
+   f.xSpd = 0;
+   f.ySpd = 0;
+   readyLaunch = true;
   }
+  
 }
 
 void mousePressed()
@@ -175,5 +206,27 @@ void mousePressed()
     f.ySpd += 5;
     f.xSpd += random(-5, 5);
     readyLaunch = false;
+  }
+  
+  if(isGameOver == true)
+  {
+    isGameOver = false;
+  }
+}
+
+void consolidateBigMacs()
+{
+  for( int i = 0; i < bigMacs.size()-1; i++ )
+  {
+    for( int j = 0; j < bigMacs.size(); j++ )
+    {
+      if( j != i && bigMacs.get(i).xPos == bigMacs.get(j).xPos && bigMacs.get(i).yPos == bigMacs.get(j).yPos )
+      {
+        bigMacs.get(i).level += bigMacs.get(j).level;
+        bigMacs.remove(j);
+        if( bigMacs.size() <= i ) //   <- to fix an overflow chrash
+          return;
+      }
+    }
   }
 }
